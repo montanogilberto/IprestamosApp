@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      Clientes
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-searchbar type="text" (ionInput)="getItem($event)"></ion-searchbar>
+  <!-- <ion-list *ngIf="clientesFilter">
+    <ion-item (click)="selectVal(cliente.id)" *ngFor=" let cliente of clientesFilter ">
+      {{ cliente.nombre }} {{ cliente.nombre2 }} {{ cliente.apellido }} {{ cliente.apellido2 }}
+    </ion-item>
+  </ion-list> -->
+
+  <ion-list>
+    <ng-container *ngIf="!clientes || clientes.length == 0">
+      <div *ngFor="let n of [0,1,2]" padding>
+        <ion-skeleton-text></ion-skeleton-text>
+        <p>
+          <ion-skeleton-text class="text-skeleton"></ion-skeleton-text>
+        </p>
+      </div>
+    </ng-container>
+    <ion-item-sliding *ngFor="let cliente of clientesFilter">
+      <ion-item lines="inset" button [routerLink]="['/clientes-details', cliente.id]">
+        <ion-avatar slot="start">
+          <ion-img src="{{cliente.urlImagen}}"></ion-img>
+        </ion-avatar>
+        <ion-label>
+          <h3>{{ cliente.nombre }} {{ cliente.nombre2 }} {{ cliente.apellido }} {{ cliente.apellido2 }}</h3>
+          <p>{{cliente.celular}}</p>
+          <p>{{cliente.email}}</p>
+        </ion-label>
+        <!-- <ion-note slot="end" color="primary">{{ cliente.noCliente }}</ion-note> -->
+      </ion-item>
+
+      <ion-item-options side="end">
+        <ion-item-option (click)="remove(item)" color="secondary">
+          Check
+          <ion-icon name="checkmark" slot="end"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button routerLink="/clientes-details" routerDirection="forward">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

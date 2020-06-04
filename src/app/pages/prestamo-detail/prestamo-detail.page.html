@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/prestamos"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detalle</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding>
+
+  <ion-item position="floating">
+    <label>Cliente</label>
+    <ion-searchbar type="text" (ionInput)="getItem($event)" ></ion-searchbar>
+  </ion-item>
+  <!--*ngIf="{{activateComponentSearch}}" -->
+  <ion-list *ngIf="clientesFilter">
+    <ion-item (click)="selectVal(cliente.id)" *ngFor=" let cliente of clientesFilter ">
+      {{cliente.nombre}}
+    </ion-item>
+  </ion-list>
+
+  <ion-list lines="full">
+    <ion-item *ngIf="prestamo">
+      <ion-label position="floating">No prestamo</ion-label>
+      <ion-input required type="number" [(ngModel)]="prestamo.noPrestamo"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="prestamo">
+      <ion-label position="floating">Cantidad</ion-label>
+      <ion-input required type="text" [(ngModel)]="prestamo.cantidad"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="prestamo">
+      <ion-label position="floating">Porcentaje Interes</ion-label>
+      <ion-input required type="text" [(ngModel)]="prestamo.interes"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="prestamo">
+      <ion-label position="floating">Tipo Interes</ion-label>
+      <ion-select placeholder="Select One">
+        <ion-select-option value="1">Mensual</ion-select-option>
+        <ion-select-option value="2">Quincenal</ion-select-option>
+        <ion-select-option value="3">Semanal</ion-select-option>
+        <ion-select-option value="4">Diario</ion-select-option>
+      </ion-select>
+      <ion-input required type="text" [(ngModel)]="prestamo.tipo"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="prestamo">
+      <ion-label position="floating">Cliente</ion-label>
+      <ion-input required type="text" value={{clienteId}} [(ngModel)]="prestamo.clienteId"></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="prestamo">
+      <ion-label position="floating">Imagen Comprobante</ion-label>
+      <ion-input required type="file" accept="image/*" (input)="onUpload($event)" [(ngModel)]="prestamo.urlImagen">
+      </ion-input>
+    </ion-item>
+    <ion-input type="text" value="{{urlImagen | async}}">{{urlImagen}}</ion-input>
+  </ion-list>
+  <ion-fab horizontal="center">
+    <ion-fab-button (click)="savePrestamo()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  
+  <ion-fab  horizontal="end"  color="danger">
+    <ion-fab-button color="danger" (click)="onRemovePrestamo(prestamoId)" routerLink="tabs/prestamos"
+       routerDirection="forward" > <!--*ngIf="{{activateComponent}}" -->
+      <ion-icon name="trash"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  
+</ion-content>

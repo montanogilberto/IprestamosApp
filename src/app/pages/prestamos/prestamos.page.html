@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      Prestamos
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+ <ion-content>
+  <ion-searchbar type="text" ></ion-searchbar>
+  <ion-list>
+    <ng-container *ngIf="!prestamos || prestamos.length == 0">
+      <div *ngFor="let n of [0,1,2]" padding>
+        <ion-skeleton-text></ion-skeleton-text>
+        <p>
+          <ion-skeleton-text class="text-skeleton"></ion-skeleton-text>
+        </p>
+      </div>
+    </ng-container>
+
+    <ion-item-sliding *ngFor="let prestamo of prestamos">
+      <ion-item lines="inset" button [routerLink]="['/prestamo-detail', prestamo.id]">
+        <ion-label>
+          <h3>Gilberto Montano Quihuis</h3>
+      
+          <p>porcentaje: {{ prestamo.interes }}%<p>
+
+          <p>Tipo: {{ prestamo.tipo }}</p>
+          <p>Estatus: Al Corriente</p>
+        </ion-label>
+        <ion-note slot="end" color="primary">
+          <ion-badge color="primary">{{ prestamo.cantidad }}$</ion-badge>
+        </ion-note>
+      </ion-item>
+ 
+      <ion-item-options side="end">
+        <ion-item-option (click)="remove(item)" color="secondary">
+          Check
+          <ion-icon name="checkmark" slot="end"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+ <ion-fab vertical="bottom" horizontal="end">
+    <ion-fab-button routerLink="/prestamo-detail" routerDirection="forward">
+      <ion-icon name="add" ></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+ </ion-content>

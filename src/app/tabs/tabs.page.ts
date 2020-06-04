@@ -1,0 +1,18 @@
+import { Component } from '@angular/core';
+import {AuthService} from '../services/auth.service';
+
+@Component({
+  selector: 'app-tabs',
+  templateUrl: 'tabs.page.html',
+  styleUrls: ['tabs.page.scss']
+})
+export class TabsPage {
+
+  constructor(public authService: AuthService) {}
+
+  Onlogout(){
+    //console.log('entro Onlogout');
+    this.authService.logout();
+  }
+
+}

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "308306398120",
+    "firebase_url": "https://crud-912ca.firebaseio.com",
+    "project_id": "crud-912ca",
+    "storage_bucket": "crud-912ca.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:308306398120:android:2f110b981724fb81afeb9d",
+        "android_client_info": {
+          "package_name": "com.iprestamos.prestamosApp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "308306398120-slr97n2evne9qvfkhpfpt27oekdb9t2k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqLangzwAPIGc1q-GmyN4z0DPvpiPyAWA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "308306398120-slr97n2evne9qvfkhpfpt27oekdb9t2k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
