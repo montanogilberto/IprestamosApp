@@ -1,5 +1,5 @@
 {
-  "appId": "com.myapp.app",
+  "appId": "com.iprestamos.prestamosApp",
   "appName": "prestamosApp",
   "bundledWebRuntime": false,
   "npmClient": "npm",

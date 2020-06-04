@@ -1,4 +1,4 @@
-package com.myapp.app;
+package com.iprestamos.prestamosApp;
 
 import android.os.Bundle;
 
