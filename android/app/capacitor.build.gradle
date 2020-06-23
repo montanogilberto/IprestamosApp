@@ -10,8 +10,9 @@ android {
 apply from: "../capacitor-cordova-android-plugins/cordova.variables.gradle"
 dependencies {
     implementation project(':byteowls-capacitor-sms')
-
+    implementation 'com.google.firebase:firebase-messaging:20.2.0'
 }
+apply from: "../../node_modules/cordova-plugin-fcm-with-dependecy-updated/src/android/FCMPlugin.gradle"
 apply from: "../../node_modules/cordova-support-google-services/build.gradle"
 apply from: "../../node_modules/phonegap-plugin-multidex/multidex.gradle"
 

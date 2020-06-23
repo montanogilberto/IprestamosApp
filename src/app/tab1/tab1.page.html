@@ -28,4 +28,9 @@
       <ion-icon name="mail"></ion-icon>
     </ion-button>
   </ion-list>
+  <ion-item>
+    <ion-label position="floating">FCM TOKEN</ion-label>
+    <ion-textarea [(ngModel)] = "fcmToken">{{fcmToken}}</ion-textarea>
+    <ion-button (click)="getToken()">Get Token</ion-button>
+  </ion-item>
 </ion-content>

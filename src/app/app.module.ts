@@ -19,6 +19,8 @@ import { PipesModule } from "./pipes/pipes.module";
 // import { CallNumber} from "@ionic-native/call-number";
 import { SMS } from "@ionic-native/sms/ngx";
 //import { Push } from "@ionic-native/push/ngx";
+import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
+import { FCM } from "@ionic-native/fcm/ngx";
 
 
 @NgModule({
@@ -32,14 +34,14 @@ import { SMS } from "@ionic-native/sms/ngx";
     AngularFireAuthModule,
     AngularFireStorageModule,
     PipesModule
-    //Contact,
-    // CallNumber,
   ],
   providers: [
     StatusBar,
     SplashScreen,
     SMS,
     //Push,
+    AndroidPermissions,
+    FCM,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
