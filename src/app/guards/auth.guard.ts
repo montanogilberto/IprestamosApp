@@ -10,6 +10,7 @@ import { auth } from 'firebase';
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthGuard implements CanActivate {
 
   constructor(private angularFireAuth: AngularFireAuth,  private router: Router) { }
@@ -17,7 +18,7 @@ export class AuthGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      console.log(auth);
+      //console.log(auth);
     return this.angularFireAuth.authState.pipe(map(auth => {
       if (isNullOrUndefined(auth)) {
         this.router.navigate(['/login']);

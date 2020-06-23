@@ -25,13 +25,6 @@ export class ClientesDetailsPage implements OnInit {
   urlImagen: Observable<string>;
   public domicilios: Observable<ClientesI>;
 
-  // domicilio: DomiciliosI = {
-  //   calle: '',
-  //   numero: 0,
-  //   codigoPostal: '',
-  //   clienteId: ''
-  // }
-
   cliente: ClientesI = {
     nombre: '',
     nombre2: '',
@@ -62,11 +55,6 @@ export class ClientesDetailsPage implements OnInit {
     if (this.clienteId) {
       this.loadCliente();
     }
-
-    // this.clienteService.getDomicilios().subscribe((domicilios) =>{
-    //   console.log('Todoss', domicilios);
-    //   this.domicilio = domicilios;
-
   }
 
   async takePicture() {
@@ -91,14 +79,6 @@ export class ClientesDetailsPage implements OnInit {
       this.cliente = cliente;
       console.log('dc clientes',cliente);
     });
-
-    //this.domicilios = this.clienteService.getDomicilioId(this.clienteId).valueChanges();
-
-    //this.clienteService.getDomicilioId(this.clienteId);
-    // this.clienteService.getDomicilios().subscribe((domicilios) => {
-    //   console.log('Domicilios', domicilios);
-    //   this.domicilios = domicilios;
-    // })
   }
 
   async saveCliente() {
@@ -132,6 +112,7 @@ export class ClientesDetailsPage implements OnInit {
       });
     }
   }
+  
   async onRemoveCliente(idCliente: string) {
     this.clienteService.removeCliente(idCliente);
     this.nav.navigateForward('tabs/clientes');

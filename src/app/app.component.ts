@@ -4,6 +4,8 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { FCM } from "@ionic-native/fcm/ngx";
+import { Router } from "@angular/router";
+import { Route } from '@angular/compiler/src/core';
 
 
 @Component({
@@ -18,36 +20,6 @@ export class AppComponent implements OnInit {
       title: 'Inbox',
       url: '/folder/Inbox',
       icon: 'mail'
-    },
-    {
-      title: 'Outbox',
-      url: '/folder/Outbox',
-      icon: 'paper-plane'
-    },
-    {
-      title: 'Favorites',
-      url: '/folder/Favorites',
-      icon: 'heart'
-    },
-    {
-      title: 'Archived',
-      url: '/folder/Archived',
-      icon: 'archive'
-    },
-    {
-      title: 'Trash',
-      url: '/folder/Trash',
-      icon: 'trash'
-    },
-    {
-      title: 'Spam',
-      url: '/folder/Spam',
-      icon: 'warning'
-    },
-    {
-      title: 'Clientes',
-      url: '/clientes/clientes',
-      icon: 'people'
     }
   ];
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
@@ -55,7 +27,8 @@ export class AppComponent implements OnInit {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    public fcm: FCM
+    public fcm: FCM,
+    private router: Router
   ) {
     this.initializeApp();
   }
@@ -68,6 +41,7 @@ export class AppComponent implements OnInit {
       //receiving fcmId
       this.fcm.getToken().then((token) => {
         localStorage.setItem('token', token);
+        console.log(token);
       }, (err) => {
         alert(JSON.stringify(err));
       })
@@ -75,14 +49,17 @@ export class AppComponent implements OnInit {
       //receving notification
       this.fcm.onNotification().subscribe((data) => {
         if (data.wasTapped) {
-
+          console.log('Received in background');
+          this.router.navigate([data.landing_page, data.price]);
         } else {
-          alert(data.message);
+          console.log('Received in foreground');
+          this.router.navigate([data.landing_page, data.price]);
         }
       })
 
       this.fcm.onTokenRefresh().subscribe((token) => {
         localStorage.setItem('token', token);
+        console.log(token);
       })
 
     });

@@ -64,6 +64,10 @@ const routes: Routes = [
   {
     path: 'domicilios-detail/:id',
     loadChildren: () => import('./pages/domicilios-detail/domicilios-detail.module').then( m => m.DomiciliosDetailPageModule)
+  },
+  {
+    path: 'second/:price',
+    loadChildren: () => import('./pages/second/second.module').then( m => m.SecondPageModule)
   }
 ];
 @NgModule({
