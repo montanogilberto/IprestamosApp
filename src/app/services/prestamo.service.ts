@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { ClientesI,PrestamosI } from "../models/clientes.interface";
+import { PrestamosI } from "../models/task.interface";
 
 @Injectable({
   providedIn: 'root'
@@ -25,12 +25,6 @@ export class PrestamoService {
         });
       })
     );
-
-    // db.collection('clientes').get().then((results) => {
-    //   results.forEach((doc) => {
-    //     this.clientes[doc.id]
-    //   });
-    // })
   }
 
 

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { ClientesI, DomiciliosI } from '../models/clientes.interface';
+import { ClientesI, DomiciliosI } from '../models/task.interface';
 // import { CallNumber } from "@ionic-native/call-number/ngx";
 //import { SMS } from "@ionic-native/sms";
 // import { Contact } from "@ionic-native/contacts";

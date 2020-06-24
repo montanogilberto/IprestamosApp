@@ -3,16 +3,13 @@
     <ion-title>
       Clientes
     </ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="folder/inicio"></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 <ion-content>
   <ion-searchbar type="text" (ionInput)="getItem($event)"></ion-searchbar>
-  <!-- <ion-list *ngIf="clientesFilter">
-    <ion-item (click)="selectVal(cliente.id)" *ngFor=" let cliente of clientesFilter ">
-      {{ cliente.nombre }} {{ cliente.nombre2 }} {{ cliente.apellido }} {{ cliente.apellido2 }}
-    </ion-item>
-  </ion-list> -->
-
   <ion-list>
     <ng-container *ngIf="!clientes || clientes.length == 0">
       <div *ngFor="let n of [0,1,2]" padding>
@@ -23,9 +20,9 @@
       </div>
     </ng-container>
     <ion-item-sliding *ngFor="let cliente of clientesFilter">
-      <ion-item lines="inset" button [routerLink]="['/clientes-details', cliente.id]">
+      <ion-item lines="inset" button [routerLink]="['/clientes-detail', cliente.id]">
         <ion-avatar slot="start">
-          <ion-img src="{{cliente.urlImagen}}"></ion-img>
+          <ion-img src="{{cliente.urlImagen}}" ></ion-img>
         </ion-avatar>
         <ion-label>
           <h3>{{ cliente.nombre }} {{ cliente.nombre2 }} {{ cliente.apellido }} {{ cliente.apellido2 }}</h3>
@@ -44,7 +41,7 @@
     </ion-item-sliding>
   </ion-list>
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button routerLink="/clientes-details" routerDirection="forward">
+    <ion-fab-button routerLink="/clientes-detail" routerDirection="forward">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>

@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/clientes"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detalles</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding>
+
+  <ion-card style="text-align: center;">
+    <img src="{{cliente.urlImagen}}" class="imgProfiler" />
+    <ion-card-header>
+      <ion-card-subtitle position="center">
+        {{ cliente.nombre }} {{ cliente.nombre2 }} {{ cliente.apellido }} {{ cliente.apellido2 }}
+      </ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+
+    <ion-item>
+       
+      <ion-fab-button slot="start" (click)="onGetChats(cliente.id,userUID)">
+        <ion-icon name="chatbox"></ion-icon>
+      </ion-fab-button>
+      
+        <ion-fab-button slot="end">
+          <ion-icon name="call"></ion-icon>
+        </ion-fab-button>
+
+      </ion-item>
+      
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card-content>
+    <ion-list>
+      <ion-item lines="inset" button [routerLink]="['/informacion-personal', clienteId]">
+        <ion-label>
+          <h3>Informacion Personal</h3>
+        </ion-label>
+      </ion-item>
+      <ion-item lines="inset" button [routerLink]="['/domicilios', clienteId]">
+        <ion-label>
+          <h3>Domicilios</h3>
+        </ion-label>
+      </ion-item>
+      <ion-item lines="inset" button [routerLink]="['/forma-pagos', clienteId]">
+      <ion-label>
+        <h3>Forma de Pagos</h3>
+      </ion-label>
+    </ion-item>
+    <ion-item lines="inset" button [routerLink]="['/avales', clienteId]">
+      <ion-label>
+        <h3>Aval</h3>
+      </ion-label>
+    </ion-item>
+    <ion-item lines="inset" button [routerLink]="['/adjuntos', clienteId]">
+      <ion-label>
+        <h3>Adjuntos</h3>
+      </ion-label>
+    </ion-item>
+    </ion-list>
+    <ion-list lines="full">
+      <ion-input #imageUser type="hidden" value="{{urlImagen | async}}" [(ngModel)]="cliente.urlImagen"></ion-input>
+    </ion-list>
+  </ion-card-content>
+
+</ion-content>

@@ -1,19 +1,38 @@
+
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { DomiciliosI } from '../models/clientes.interface';
+import { DomiciliosI } from '../models/task.interface';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ClienteService {
+
+export class DomicilioService {
   
   private domiciliosCollection: AngularFirestoreCollection<DomiciliosI>;
   private domicilios: Observable<DomiciliosI[]>;
 
-  constructor(db:AngularFirestore) { 
-    this.domiciliosCollection = db.collection<DomiciliosI>('domicilios');
+  domicilio: DomiciliosI = {
+    fraccionamiento: '',
+    municipio: '',
+    calle: '',
+    noInterior: '',
+    noExterior: '',
+    entre: '',
+    entre2: '',
+    referencia: '',
+    urlImagen: '',
+    clienteId: '',
+    codigoPostal: '',
+    }
+  
+
+  constructor(private db:AngularFirestore) { }
+
+  getDomicilios(clienteId: string){
+    this.domiciliosCollection = this.db.collection<DomiciliosI>('domicilios', ref => ref.where("clienteId","==",clienteId));
     this.domicilios = this.domiciliosCollection.snapshotChanges().pipe(map
       (actions => {
         return actions.map(a => {
@@ -23,25 +42,23 @@ export class ClienteService {
         });
       })
     );
-  }
 
-  getDomicilios(){
-    return this.domicilios
+    return this.domicilios;
   }
 
   getDomicilio(id: string){
     return this.domiciliosCollection.doc<DomiciliosI>(id).valueChanges();
   }
 
-  updateDomicilio(domicilio:DomiciliosI, id: string){
+  update(domicilio:DomiciliosI, id: string){
     return this.domiciliosCollection.doc(id).update(domicilio);
   }
   
-  addDomicilio(domicilio: DomiciliosI){
+  add(domicilio: DomiciliosI){
     return this.domiciliosCollection.add(domicilio);
   }
   
-  removeDomicilio(id: string){
+  remove(id: string){
     return this.domiciliosCollection.doc(id).delete();
   }
 

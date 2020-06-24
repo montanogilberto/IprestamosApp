@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Forma de Pagos</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/clientes-detail"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-item-sliding *ngFor="let formapago of formapagos">
+    <ion-item lines="inset" button [routerLink]="['/forma-pagos-detail', domicilio.id]">
+      <label>Editar</label>
+    </ion-item>
+
+    <ion-list lines="full">
+      <ion-item>
+        <ion-label position="floating">Numero Tarjeta</ion-label>
+        <ion-input type="text" [(ngModel)]="domicilio.tarjeta" readonly></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating"> Fecha Caducidad </ion-label>
+        <ion-input type="text" [(ngModel)]="domicilio.calle" readonly></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating"> cvv </ion-label>
+        <ion-input type="text" [(ngModel)]="domicilio.cvv" readonly></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating"> Banco</ion-label>
+        <ion-input type="text" [(ngModel)]="domicilio.banco" readonly></ion-input> -->
+      </ion-item>
+    </ion-list>
+
+    <ion-item-options side="end">
+      <ion-item-option (click)="remove(item)" color="secondary">
+        Check
+        <ion-icon name="checkmark" slot="end"></ion-icon>
+      </ion-item-option>
+    </ion-item-options>
+  </ion-item-sliding>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button [routerLink]="['/forma-pagos-detail', domicilio.id]" routerDirection="forward">
+      <ion-icon name="create"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

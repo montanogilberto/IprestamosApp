@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>avales</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/clientes-detail"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-item-sliding *ngFor="let aval of avales">
+    <ion-item lines="inset" button [routerLink]="['/aval-detail', aval.id]">
+      <label>Editar</label>
+    </ion-item>
+
+    <ion-list lines="full">
+      <ion-item>
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input type="text" [(ngModel)]="aval.nombre" readonly></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating"> Segundo Nombre </ion-label>
+        <ion-input type="text" [(ngModel)]="aval.nombre2" readonly></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating"> Apellido Paterno </ion-label>
+        <ion-input type="text" [(ngModel)]="aval.apellido" readonly></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating"> Apellido Materno</ion-label>
+        <ion-input type="text" [(ngModel)]="aval.apellido2" readonly></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating"> Celular</ion-label>
+        <ion-input type="text" [(ngModel)]="aval.celular" readonly></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating"> Email</ion-label>
+        <ion-input type="text" [(ngModel)]="aval.email" readonly></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating"> TipoIdentificacion</ion-label>
+        <ion-input type="text" [(ngModel)]="aval.tipoIdentificacion" readonly></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating"> No Identificacion</ion-label>
+        <ion-input type="text" [(ngModel)]="aval.noIdentificacion" readonly></ion-input>
+      </ion-item>
+
+    </ion-list>
+
+    <ion-item-options side="end">
+      <ion-item-option (click)="remove(item)" color="secondary">
+        Check
+        <ion-icon name="checkmark" slot="end"></ion-icon>
+      </ion-item-option>
+    </ion-item-options>
+  </ion-item-sliding>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button [routerLink]="['/aval-detail', aval.id]" routerDirection="forward">
+      <ion-icon name="create"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

@@ -36,4 +36,27 @@ export class Tab1Page {
     this.sms.send('5578445853', 'Bienvenido a iprestamos')
   }
 
+  // envoieNotif() {
+
+  //   let headers = new Headers({ 'Authorization': 'key=KEY', 'Content-Type': 'application/json' });
+  //   let options = new RequestOptions({ headers: headers });
+  //   let notification = {
+  //     "notification": {
+  //       "title": "Titre",
+  //       "body": "body",
+  //       "click_action": "FCM_PLUGIN_ACTIVITY",
+  //       "sound": "default"
+  //     }, "data": {
+  //       //OPTIONAL PARAMS
+  //     },
+  //     "to": "TOKEN",
+  //     "priority": "high"
+  //   }
+  //   let url = 'https://fcm.googleapis.com/fcm/send';
+  //   this.http.post(url, notification, options)
+  //   .subscribe(resp => {
+  //   console.log(resp);
+  //   });
+  // }
+
 }

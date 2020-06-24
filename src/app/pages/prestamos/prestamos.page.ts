@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PrestamosI,ClientesI } from "../../models/clientes.interface";
+import { PrestamosI,ClientesI } from "../../models/task.interface";
 import { PrestamoService } from "../../services/prestamo.service";
 import { ClienteService } from "../../services/cliente.service";
 

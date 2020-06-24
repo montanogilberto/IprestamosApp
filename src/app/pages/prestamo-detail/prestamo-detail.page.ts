@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ClientesI, PrestamosI} from '../../models/clientes.interface';
+import { ClientesI, PrestamosI} from '../../models/task.interface';
 import { ClienteService} from '../../services/cliente.service';
 import { PrestamoService } from "../../services/prestamo.service";
 import { ActivatedRoute } from '@angular/router';

@@ -1,0 +1,93 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/clientes=detail/{{clienteId}}"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Informacion Personal</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-card>
+    <img src="{{cliente.urlImagen}}" class="imgProfiler" />
+    <ion-card-header>
+      <ion-card-subtitle position="center">
+        {{ cliente.nombre }} {{ cliente.nombre2 }} {{ cliente.apellido }} {{ cliente.apellido2 }}
+      </ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+
+    <ion-item>
+         <!-- <ion-fab-button> -->
+           
+             <!-- <ion-icon name="add"></ion-icon> -->
+           
+          <input type="file" class="hideInput" (input)="onUpload($event)" accept="image/*"/>
+          <!-- </ion-fab-button> -->
+      
+
+      <!-- <img [src]="photo"> -->
+
+      
+        <ion-fab-button (click)="takePicture()" slot="start">
+          <ion-icon name="camera"></ion-icon>
+        </ion-fab-button>
+
+      </ion-item>
+      
+    </ion-card-content>
+
+    <ion-card-content>
+      <ion-card-title>
+        Informacion Personal
+      </ion-card-title>
+      <ion-list lines="full">
+        <ion-item *ngIf="cliente">
+          <ion-label position="floating">No Cliente</ion-label>
+          <ion-input required type="number" [(ngModel)]="cliente.noCliente"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="cliente">
+          <ion-label position="floating">Nombre</ion-label>
+          <ion-input required type="text" [(ngModel)]="cliente.nombre"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="cliente">
+          <ion-label position="floating">Segundo Nombre</ion-label>
+          <ion-input required type="text" [(ngModel)]="cliente.nombre2"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="cliente">
+          <ion-label position="floating">Apellido Parterno</ion-label>
+          <ion-input required type="text" [(ngModel)]="cliente.apellido"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="cliente">
+          <ion-label position="floating">Apellido Materno</ion-label>
+          <ion-input required type="text" [(ngModel)]="cliente.apellido2"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="cliente">
+          <ion-label position="floating">Celular</ion-label>
+          <ion-input required type="tel" placeholder="6624737005" [(ngModel)]="cliente.celular"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="cliente">
+          <ion-label position="floating">Email</ion-label>
+          <ion-input required type="email" placeholder="test@gamail.com" [(ngModel)]="cliente.email"></ion-input>
+        </ion-item>
+
+        <ion-input #imageUser type="hidden" value="{{urlImagen | async}}" [(ngModel)]="cliente.urlImagen"></ion-input>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  <br>
+  <ion-fab horizontal="center">
+    <ion-fab-button (click)="saveCliente()">
+      <!-- <ion-icon name="add"></ion-icon> -->
+      <ion-icon name="clipboard"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-fab horizontal="end" color="danger">
+    <ion-fab-button color="danger" (click)="onRemoveCliente(clienteId)" routerLink="/clientes"
+      routerDirection="forward">
+      <ion-icon name="trash"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

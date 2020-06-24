@@ -1,11 +1,3 @@
-<!-- <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
-  </ion-toolbar>
-</ion-header> -->
-
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
@@ -15,22 +7,36 @@
 
   <ion-list>
     <ion-item>
-      <ion-avatar slot="start">
-        <ion-img src="https://i.picsum.photos/id/1012/3973/2639.jpg"></ion-img>
-      </ion-avatar>
       <ion-label>
-        <h3>Abbey Road</h3>
-        <p>The Beatles</p>
-        <p>1969</p>
+        <h1>$0</h1>
+        <p>Total Prestamo</p>
+      </ion-label>
+      <ion-icon name="arrow-forward-outline"></ion-icon>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-list-header>
+      <h1>Pagos Recientes</h1>
+    </ion-list-header>
+    <ion-item>
+      <ion-label>
+        <h3>$0</h3>
+        <p>Abono # 2</p>
       </ion-label>
     </ion-item>
-    <ion-button (click)="sendSMS()">
-      <ion-icon name="mail"></ion-icon>
-    </ion-button>
+    <ion-item>
+      <ion-label>
+        <h3>$100</h3>
+        <p>Abono # 1</p>
+      </ion-label>
+    </ion-item>
   </ion-list>
-  <ion-item>
-    <ion-label position="floating">FCM TOKEN</ion-label>
-    <ion-textarea [(ngModel)] = "fcmToken"></ion-textarea>
-    <ion-button (click)="getToken()">Get Token</ion-button>
-  </ion-item>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="logo-usd"></ion-icon>
+    </ion-fab-button>
+    <ion-label>Solicitar</ion-label>
+  </ion-fab>
+
 </ion-content>

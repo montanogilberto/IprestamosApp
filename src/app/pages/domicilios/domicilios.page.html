@@ -1,9 +1,66 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>domicilios</ion-title>
+  <ion-toolbar color="primary">
+    <ion-title>
+      Informacion Domicilios
+    </ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/clientes-detail"></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
+  <ion-list>
+    <ion-item-sliding *ngFor="let domicilio of domicilios">
+       <ion-item lines="inset" button [routerLink]="['/domicilio-detail', domicilio.id]">
+        <label>Editar</label>
+      </ion-item>
+      <ion-img src="{{domicilio.urlImagen}}" class="imgProfiler"></ion-img>
 
+      <ion-list lines="full">
+        <ion-item>
+          <ion-label position="floating">Codigo Postal</ion-label>
+          <ion-input type="text" [(ngModel)]="domicilio.codigoPostal" readonly></ion-input>
+        </ion-item>
+        <ion-item *ngIf="domicilio">
+          <ion-label position="floating">Fraccionamiento</ion-label>
+          <ion-input required type="text" [(ngModel)]="domicilio.fraccionamiento"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="domicilio">
+          <ion-label position="floating">Municipio</ion-label>
+          <ion-input required type="text" [(ngModel)]="domicilio.municipio"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating"> Calle </ion-label>
+          <ion-input type="text" [(ngModel)]="domicilio.calle" readonly></ion-input>
+        </ion-item>
+        
+        <ion-item>
+          <ion-label position="floating"> Numero Interior </ion-label>
+          <ion-input type="text" [(ngModel)]="domicilio.noInterior" readonly></ion-input>
+        </ion-item>
+        
+        <ion-item>
+          <ion-label position="floating"> Numero Exterior</ion-label>
+          <ion-input type="text" [(ngModel)]="domicilio.noExterior" readonly></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating"> Entre </ion-label>
+          <ion-input type="text" [(ngModel)]="domicilio.entre" readonly></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating"> Y Entre </ion-label>
+          <ion-input type="text" [(ngModel)]="domicilio.entre2" readonly></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating"> Referencia </ion-label>
+          <ion-textarea readonly [(ngModel)]="domicilio.referencia"></ion-textarea>
+        </ion-item>
+      </ion-list>
+    </ion-item-sliding>
+  </ion-list>
+      <!-- <ion-fab vertical="bottom" horizontal="end" slot="fixed" >
+        <ion-fab-button [routerLink]="['/domicilio-detail', domicilioId]" routerDirection="forward">
+          <ion-icon name="create"></ion-icon>
+        </ion-fab-button>
+      </ion-fab> -->
 </ion-content>

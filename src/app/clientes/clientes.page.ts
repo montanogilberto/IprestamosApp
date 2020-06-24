@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ClientesI } from '../models/clientes.interface';
-import { ClienteService} from '../services/cliente.service';
+import { ClientesI } from '../models/task.interface';
+import { ClienteService } from '../services/cliente.service';
 import { NavController, LoadingController} from '@ionic/angular';
-
 
 @Component({
   selector: 'app-clientes',
@@ -11,6 +10,7 @@ import { NavController, LoadingController} from '@ionic/angular';
 })
 export class ClientesPage implements OnInit {
 
+  
   clientes: ClientesI[];
   clientesFilter: any[];
   
@@ -24,17 +24,22 @@ export class ClientesPage implements OnInit {
     email: '',
     urlImagen: '',
     noCliente: 0,
+    telefono: '',
+    tipoIdentificacion: '',
+    noidentificacion: '',
   }
 
-  constructor(private clienteService: ClienteService, private loadingController: LoadingController) { }
+  constructor(
+    private clienteService: ClienteService,
+    private loadingController: LoadingController) { }
 
-  ngOnInit(){
-    this.clienteService.getClientes().subscribe((clientes) =>{
-      console.log('Todoss', clientes);
-      this.clientes = clientes;
-      this.initializaClientesFilter();
-    })
-  }
+    ngOnInit(){
+      this.clienteService.getClientes().subscribe((clientes) =>{
+        console.log('Todoss', clientes);
+        this.clientes = clientes;
+        this.initializaClientesFilter();
+      })
+    }
 
   async loadCliente(){
     const loading = await this.loadingController.create({

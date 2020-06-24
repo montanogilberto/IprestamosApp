@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/clientes=detail/{{clienteId}}"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Domicilios</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+<ion-card>
+  <ion-card-content>
+    <ion-card-title>
+      Informacion Domicilios
+    </ion-card-title>
+    <ion-list lines="full">
+      <ion-item *ngIf="domicilio">
+        <ion-label position="floating">Codigo Postal</ion-label>
+        <ion-input required type="text" [(ngModel)]="domicilio.codigoPostal"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="domicilio">
+        <ion-label position="floating">Fraccionamiento</ion-label>
+        <ion-input required type="text" [(ngModel)]="domicilio.fraccionamiento"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="domicilio">
+        <ion-label position="floating">Municipio</ion-label>
+        <ion-input required type="text" [(ngModel)]="domicilio.municipio"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="domicilio">
+        <ion-label position="floating">Calle</ion-label>
+        <ion-input required type="text" [(ngModel)]="domicilio.calle"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="domicilio">
+        <ion-label position="floating">noInterior</ion-label>
+        <ion-input required type="text" [(ngModel)]="domicilio.noInterior"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="domicilio">
+        <ion-label position="floating">noExterior</ion-label>
+        <ion-input required type="text" [(ngModel)]="domicilio.noExterior"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="domicilio">
+        <ion-label position="floating">entre</ion-label>
+        <ion-input required type="text" [(ngModel)]="domicilio.entre"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="domicilio">
+        <ion-label position="floating">entre2</ion-label>
+        <ion-input required type="text" [(ngModel)]="domicilio.entre2"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="domicilio">
+        <ion-label position="floating">referencia</ion-label>
+        <ion-textarea [(ngModel)]="domicilio.referencia"></ion-textarea>
+      </ion-item>
+
+      <ion-input #imageUser type="hidden" value="{{urlImagen | async}}" [(ngModel)]="domicilio.urlImagen"></ion-input>
+    </ion-list>
+  </ion-card-content>
+</ion-card>
+<br>
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button (click)="save()">
+    <ion-icon name="clipboard"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+
+<ion-fab horizontal="center">
+  <ion-fab-button color="danger" (click)="onRemove(domicilioId)" routerLink="/clientes-detail" routerDirection="forward">
+    <ion-icon name="trash"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+
+</ion-content>
