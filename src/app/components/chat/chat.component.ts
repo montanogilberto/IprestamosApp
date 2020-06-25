@@ -27,7 +27,7 @@ public msg: string
     //console.log("chat local",this.chat[0]);
     this.chatService.getChat(this.chat[0].id).subscribe(room => {
       console.log("room",room)
-      this.room = room;
+      this.room = room[0];
     })
   }
 

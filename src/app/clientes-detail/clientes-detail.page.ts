@@ -73,13 +73,13 @@ export class ClientesDetailPage implements OnInit {
     this.chatService.getChats(this.clienteId, this.userUID).subscribe(chats => {
       loading.dismiss();
       this.chats = chats;
-      console.log('chats', chats);
+      console.log('Getchats', chats);
       this.openChat(this.chats)
     });
   }
 
   openChat(chat) {
-    console.log("chat",chat)
+    console.log("Openchat",chat)
     this.modal.create({
       component: ChatComponent,
       componentProps: {
