@@ -6,7 +6,7 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 import { FCM } from "@ionic-native/fcm/ngx";
 import { Router } from "@angular/router";
 import { Route } from '@angular/compiler/src/core';
-
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
   selector: 'app-root',
@@ -14,21 +14,14 @@ import { Route } from '@angular/compiler/src/core';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent implements OnInit {
-  public selectedIndex = 0;
-  public appPages = [
-    {
-      title: 'Inbox',
-      url: '/folder/Inbox',
-      icon: 'mail'
-    }
-  ];
   
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     public fcm: FCM,
-    private router: Router
+    private router: Router,
+    public angularFireAuth: AngularFireAuth
   ) {
     this.initializeApp();
   }
@@ -66,9 +59,9 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    const path = window.location.pathname.split('folder/')[1];
-    if (path !== undefined) {
-      this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
-    }
+    this.angularFireAuth.authState.subscribe(user => {
+      localStorage.setItem('userUID',user.uid)
+      localStorage.setItem('userEmail',user.email)
+    });
   }
 }

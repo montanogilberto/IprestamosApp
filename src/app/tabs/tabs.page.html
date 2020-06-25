@@ -1,6 +1,26 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-item color="primary">
+    <ion-avatar slot="start">
+      <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+    </ion-avatar>
+    
+    <ion-icon slot="end" name="notifications-outline" class="ion-icon-menu" (click)="showNotification()"></ion-icon>
+
+    <!-- <ion-label class="size-label">{{userEmail}}</ion-label> -->
+  </ion-item>
+    <ion-button slot="end" fill="clear" (click)="presentActionSheet()">
+      <ion-icon name="menu" class="ion-icon-menu"></ion-icon>
+    </ion-button>
+    
+    <!-- <ion-title size="small">
+      {{userEmail}}
+    </ion-title> -->
+  </ion-toolbar>
+</ion-header>
 <ion-tabs>
 
-  <ion-button (click)='Onlogout()'>Desconectarse</ion-button>
+  <!-- <ion-button (click)='Onlogout()'>Desconectarse</ion-button> -->
 
   <ion-tab-bar slot="top">
 
@@ -17,14 +37,14 @@
       <ion-label>Inicio</ion-label>
     </ion-tab-button>
 
+    <ion-tab-button tab="prestamos">
+      <ion-icon name="person-outline"></ion-icon>
+      <ion-label>Perfil</ion-label>
+    </ion-tab-button>
+
     <ion-tab-button tab="clientes">
       <ion-icon name="people"></ion-icon>
       <ion-label>Prestamistas</ion-label>
-    </ion-tab-button>
-
-    <ion-tab-button tab="prestamos">
-      <ion-icon name="cash-outline"></ion-icon>
-      <ion-label>Prestamos</ion-label>
     </ion-tab-button>
     
     <ion-tab-button tab="pagos">

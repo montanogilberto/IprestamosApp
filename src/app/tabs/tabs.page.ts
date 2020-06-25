@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {AuthService} from '../services/auth.service';
+import { ActionSheetController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tabs',
@@ -8,11 +9,35 @@ import {AuthService} from '../services/auth.service';
 })
 export class TabsPage {
 
-  constructor(public authService: AuthService) {}
+  public userEmail: string = localStorage.getItem("userEmail");
+
+  constructor(
+      public authService: AuthService,
+      public actionSheetController: ActionSheetController
+      ) {}
 
   Onlogout(){
-    //console.log('entro Onlogout');
     this.authService.logout();
+  }
+
+  showNotification(){
+    console.log("entro notification");
+  }
+
+  async presentActionSheet() {
+    const actionSheet = await this.actionSheetController.create({
+      header: 'Opciones',
+      cssClass: 'my-custom-class',
+      buttons: [{
+        text: 'Desconectarse',
+        role: 'destructive',
+        icon: 'log-out',
+        handler: () => {
+          this.Onlogout();
+        },
+      }]
+    });
+    await actionSheet.present();
   }
 
 }
