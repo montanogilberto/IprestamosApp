@@ -23,6 +23,7 @@ import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 import { FCM } from "@ionic-native/fcm/ngx";
 import { ChatComponent } from "./components/chat/chat.component";
 import { FormsModule } from "@angular/forms";
+import { Camera } from '@ionic-native/camera/ngx';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { FormsModule } from "@angular/forms";
     SMS,
     AndroidPermissions,
     FCM,
+    Camera,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: FirestoreSettingsToken, useValue: {} }
   ],

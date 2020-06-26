@@ -84,3 +84,10 @@ export interface MessageI{
     type: string;
 }
 
+export interface UsuariosI{
+    id?: string;
+    name: string;
+    uid: string;
+    urlImgen: string;
+}
+

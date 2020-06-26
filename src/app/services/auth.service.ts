@@ -40,7 +40,7 @@ export class AuthService {
     return this.angularFireAuth.authState.pipe(map(auth => auth));
   }
 
-  register(email:string, password:string, name: string){
+  register(email:string, password:string, name: string, urlImagen: string){
 
     return new Promise ((resolve,reject)=>{
       this.angularFireAuth.auth.createUserWithEmailAndPassword(email,password).then(res => {
@@ -48,7 +48,8 @@ export class AuthService {
         console.log(uid);
         this.db.collection('users').doc(res.user.uid).set({
           name: name,
-          uid: uid
+          uid: uid,
+          urlImagen: urlImagen
         })
         resolve(res);
       }).catch( err => reject(err))

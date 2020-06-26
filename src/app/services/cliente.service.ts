@@ -14,7 +14,8 @@ export class ClienteService {
   private clientes: Observable<ClientesI[]>;
   private domicilios: Observable<DomiciliosI[]>;
 
-  constructor(db:AngularFirestore, 
+  constructor(
+    private db:AngularFirestore, 
     private angularFirestore: AngularFirestore
     ) { 
 
@@ -28,17 +29,6 @@ export class ClienteService {
         });
       })
     );
-    this.domiciliosCollection = db.collection<DomiciliosI>('clientes');
-    this.domicilios = this.domiciliosCollection.snapshotChanges().pipe(map
-      (actions => {
-        return actions.map(a => {
-          const data = a.payload.doc.data();
-          const id = a.payload.doc.id;
-          return {id, ...data};
-        });
-      })
-    );
-    console.log('c clientes',this.domicilios)
   }
 
   getClientes(){

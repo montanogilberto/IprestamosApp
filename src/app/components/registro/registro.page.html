@@ -9,26 +9,27 @@
 
 <ion-content padding>
 
-  <ion-card style="text-align: center;">
+  <ion-card>
+    <ion-img class="register-icon" src={{urlImagen}} (click)="presentActionSheet()"></ion-img>
     <ion-card-content>
       <ion-item>
-        <ion-label position="floating">Nombre</ion-label>
-        <ion-input type="text" [(ngModel)]="name" name="name"></ion-input>
+        <ion-label position="floating">Nombre Usuario</ion-label>
+        <ion-input type="text" [(ngModel)]="name" name="name" placeholder="Usuario"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Email</ion-label>
-        <ion-input type="Email" [(ngModel)]="email" name="email"></ion-input>
+        <ion-input type="Email" [(ngModel)]="email" name="email" placeholder="nombre@ejemplo.com"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Password</ion-label>
-        <ion-input type="password" [(ngModel)]="password" name="password"></ion-input>
+        <ion-input type="password" [(ngModel)]="password" name="password" placeholder="..."></ion-input>
       </ion-item>
-      <br>
+      <ion-input #imageUser type="text" value="{{urlImagenObs | async}}" [(ngModel)]="urlImagen" name="urlImagen"></ion-input>
     </ion-card-content>
   </ion-card>
   <ion-fab vertical="bottom" horizontal="center">
     <ion-fab-button (click)="OnRegister()">
-      <ion-icon name="add"></ion-icon>
+      <ion-icon name="save-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 </ion-content>
