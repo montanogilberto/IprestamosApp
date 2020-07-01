@@ -27,7 +27,6 @@ export class PrestamoService {
     );
   }
 
-
   getPrestamos(){
     return this.prestamo;
   }
