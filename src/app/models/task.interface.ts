@@ -11,6 +11,7 @@ export interface ClientesI{
     telefono: string;
     tipoIdentificacion: string;
     noidentificacion: string;
+    uid: string;
 }
 
 export interface DomiciliosI{
@@ -26,6 +27,7 @@ export interface DomiciliosI{
     urlImagen: string;
     clienteId: string;
     codigoPostal: string;
+    uid: string;
 }
 
 export interface FormaPagoI{
@@ -35,6 +37,7 @@ export interface FormaPagoI{
     cvv: string;
     banco: string;
     clienteId: string;
+    uid: string;
 }
 
 export interface AvalI{
@@ -51,6 +54,7 @@ export interface AvalI{
     noidentificacion: string;
     urlImagenIdentificacion: string;
     clienteId: string;
+    uid: string;
 }
 
 export interface AdjuntosI{
@@ -59,6 +63,7 @@ export interface AdjuntosI{
     descripcion: string;
     urlDocumento: string;
     clienteId: string;
+    uid: string;
 }
 
 export interface PrestamosI{
@@ -68,6 +73,7 @@ export interface PrestamosI{
     interes: number;
     tipo: number;
     clienteId: string;
+    uid: string;
 }
 
 export interface ChatI{

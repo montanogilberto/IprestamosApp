@@ -34,6 +34,7 @@ export class DomicilioDetailPage implements OnInit {
     urlImagen: '',
     clienteId: '',
     codigoPostal: '',
+    uid: '',
     }
 
   constructor(
@@ -82,7 +83,7 @@ export class DomicilioDetailPage implements OnInit {
       });
     } else {
       console.log(this.domicilio);
-      this.domicilioService.add(this.domicilio).then(() => {
+      this.domicilioService.addDomicilio(this.domicilio).then(() => {
         loading.dismiss();
         // this.authService.isAuth().subscribe(user => {
         //   console.log(user);

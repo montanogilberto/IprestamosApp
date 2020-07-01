@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { ClientesI, DomiciliosI } from '../models/task.interface';
+import { ClientesI } from '../models/task.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -10,9 +10,7 @@ import { ClientesI, DomiciliosI } from '../models/task.interface';
 export class ClienteService {
   
   private clientesCollection: AngularFirestoreCollection<ClientesI>;
-  private domiciliosCollection: AngularFirestoreCollection<DomiciliosI>;
   private clientes: Observable<ClientesI[]>;
-  private domicilios: Observable<DomiciliosI[]>;
 
   constructor(
     private db:AngularFirestore, 

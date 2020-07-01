@@ -31,7 +31,7 @@ export class LoginPage implements OnInit {
     await loading.present();
     this.authService.login(this.email,this.password).then(res => {
       loading.dismiss();
-      this.router.navigate(['/tabs/tab1']);
+      //this.router.navigate(['/tabs/tab1']);
     }).catch(err => alert('Los datos son incorrectos'));
     
   }

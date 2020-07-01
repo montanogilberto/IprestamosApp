@@ -2,12 +2,13 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { AuthService } from "../../services/auth.service";
 import { Router } from "@angular/router";
 import { LoadingController, ActionSheetController } from '@ionic/angular';
-import { Plugins, CameraResultType } from "@capacitor/core";
+import { Capacitor, Plugins, CameraResultType, FilesystemDirectory } from '@capacitor/core';
 import { AngularFireStorage } from "@angular/fire/storage";
 import { Observable } from 'rxjs/internal/observable';
 import { finalize } from 'rxjs/operators';
+import { RegistroService } from "../../services/registro.service";
 
-const { Camera } = Plugins;
+const { Camera, Filesystem } = Plugins;
 
 @Component({
   selector: 'app-registro',
@@ -31,26 +32,64 @@ export class RegistroPage implements OnInit {
     private loadingController: LoadingController,
     public actionSheetController: ActionSheetController,
     private angularFireStorage: AngularFireStorage,
+    private registroService: RegistroService
   ) { }
 
   ngOnInit() {
 
   }
 
-  async takePicture() {
-    const image = await Camera.getPhoto({
-      quality: 100,
-      allowEditing: true,
+  takePhoto() {
+
+    const options = {
       resultType: CameraResultType.Uri
-    });
-    // image.webPath will contain a path that can be set as an image src.
-    // You can access the original file using image.path, which can be
-    // passed to the Filesystem API to read the raw data of the image,
-    // if desired (or pass resultType: CameraResultType.Base64 to getPhoto)
-    console.log("image-Path",image.path);
-    console.log("image-webPath",image.webPath);
-    this.urlImagen = image.webPath;
+    };
+
+    Camera.getPhoto(options).then(
+      photo => {
+        Filesystem.readFile({
+          path: photo.path
+        }).then(
+          result => {
+            let date = new Date(),
+              time = date.getTime(),
+              fileName = time + ".jpeg";
+
+            Filesystem.writeFile({
+              data: result.data,
+              path: fileName,
+              directory: FilesystemDirectory.Data
+            }).then(
+              () => {
+                Filesystem.getUri({
+                  directory: FilesystemDirectory.Data,
+                  path: fileName
+                }).then(
+                  result => {
+                    let path = Capacitor.convertFileSrc(result.uri);
+                    console.log(path);
+                  },
+                  err => {
+                    console.log(err);
+                  }
+                );
+              },
+              err => {
+                console.log(err);
+              }
+            );
+          },
+          err => {
+            console.log(err);
+          }
+        );
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
+
 
   async OnRegister() {
     const loading = await this.loadingController.create({
@@ -58,18 +97,20 @@ export class RegistroPage implements OnInit {
     });
     await loading.present();
 
-    if(this.urlImagen){
-      this.onUpload(this.urlImagen);
-    }
+    // if (this.urlImagen) {
+    //   this.onUpload(this.urlImagen);
+    // }
 
-    // console.log("datos register", this.email + ' ' + this.password + ' ' + this.name + ' ' + this.urlImagenInp)
-    
-    // this.authService.register(this.email, this.password, this.name, this.urlImagenInp).then(res => {
-    //   loading.dismiss();
-    //   this.router.navigate(['/tabs/tab1']);
-    // }).catch(err => console.log(err))
-    
+    this.registroService.addUser(this.email, this.password, this.name, this.urlImagen).then(res => {
+      //console.log('user Registro',res);
+      this.Onlogout();
+      loading.dismiss();
+      this.router.navigate(['/login']);
+    }).catch(err => console.log(err))
+  }
 
+  Onlogout(){
+    this.authService.logout();
   }
 
   async presentActionSheet() {
@@ -81,9 +122,9 @@ export class RegistroPage implements OnInit {
         role: 'destructive',
         icon: 'camera-outline',
         handler: () => {
-          this.takePicture();
+          this.takePhoto();
         },
-      }]
+      }],
     });
     await actionSheet.present();
   }
@@ -93,7 +134,7 @@ export class RegistroPage implements OnInit {
     const id = Math.random().toString(36).substring(2);
     const file = urlImagen;
     const filePath = 'uploads/profile_' + id;
-    console.log("variables",id + " " + file + " " + filePath)
+    console.log("variables", id + " " + file + " " + filePath)
     // const ref = this.angularFireStorage.ref(filePath);
     // const task = this.angularFireStorage.upload(filePath, file)
     // this.uploadPercent = task.percentageChanges();

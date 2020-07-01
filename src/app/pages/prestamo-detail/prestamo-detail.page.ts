@@ -26,7 +26,8 @@ export class PrestamoDetailPage implements OnInit {
     cantidad: 0,
     interes: 0,
     tipo: 0,
-    clienteId: ''
+    clienteId: '',
+    uid: ''
   }
   
   prestamoId = null;

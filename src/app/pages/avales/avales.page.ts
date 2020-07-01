@@ -29,6 +29,7 @@ export class AvalesPage implements OnInit {
     noidentificacion: '',
     urlImagenIdentificacion: '',
     clienteId: '',
+    uid: '',
   }
 
   constructor(

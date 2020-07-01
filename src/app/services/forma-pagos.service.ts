@@ -12,15 +12,23 @@ export class FormaPagosService {
   private formaPagosCollection: AngularFirestoreCollection<FormaPagoI>;
   private formaPagos: Observable<FormaPagoI[]>;
 
-  formaPago: FormaPagoI = {
-    tarjeta: '',
-    fechaCaducidad: '',
-    cvv: '',
-    banco: '',
-    clienteId: '',
-  }
 
-  constructor(private db:AngularFirestore) { }
+  constructor(
+      private db:AngularFirestore,
+      private angularFirestore: AngularFirestore
+      ) { 
+
+    this.formaPagosCollection = db.collection<FormaPagoI>('formaPagos');
+    this.formaPagos = this.formaPagosCollection.snapshotChanges().pipe(map
+      (actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+          return {id, ...data};
+        });
+      })
+    );
+  }
 
   getFormaPagos(clienteId: string){
     this.formaPagosCollection = this.db.collection<FormaPagoI>('formaPagos', ref => ref.where("clienteId","==",clienteId));

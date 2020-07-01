@@ -27,6 +27,7 @@ export class ClientesPage implements OnInit {
     telefono: '',
     tipoIdentificacion: '',
     noidentificacion: '',
+    uid: '',
   }
 
   constructor(
@@ -35,7 +36,7 @@ export class ClientesPage implements OnInit {
 
     ngOnInit(){
       this.clienteService.getClientes().subscribe((clientes) =>{
-        console.log('Todoss', clientes);
+        //console.log('Todoss', clientes);
         this.clientes = clientes;
         this.initializaClientesFilter();
       })

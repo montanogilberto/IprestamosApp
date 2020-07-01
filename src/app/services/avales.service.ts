@@ -12,22 +12,21 @@ export class AvalesService {
   private avalesCollection: AngularFirestoreCollection<AvalI>;
   private avales: Observable<AvalI[]>;
 
-  aval: AvalI = {
-    nombre: '',
-    nombre2: '',
-    apellido: '',
-    apellido2: '',
-    celular: '',
-    email: '',
-    urlImagen: '',
-    telefono: '',
-    tipoIdentificacion: '',
-    noidentificacion: '',
-    urlImagenIdentificacion: '',
-    clienteId: '',
+  constructor(
+      private db:AngularFirestore,
+      private angularFirestore: AngularFirestore
+      ) { 
+    this.avalesCollection = db.collection<AvalI>('avales');
+    this.avales = this.avalesCollection.snapshotChanges().pipe(map
+      (actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+          return {id, ...data};
+        });
+      })
+    );
   }
-
-  constructor(private db:AngularFirestore) { }
 
   getAvales(clienteId: string){
     this.avalesCollection = this.db.collection<AvalI>('avales', ref => ref.where("clienteId","==",clienteId));

@@ -36,6 +36,7 @@ export class InformacionPersonalPage implements OnInit {
     telefono: '',
     tipoIdentificacion: '',
     noidentificacion: '',
+    uid: '',
   }
 
   constructor(
@@ -97,18 +98,6 @@ export class InformacionPersonalPage implements OnInit {
       console.log(this.cliente);
       this.clienteService.addCliente(this.cliente).then(() => {
         loading.dismiss();
-        // this.authService.isAuth().subscribe(user => {
-        //   console.log(user);
-        //   if (user) {
-        //     user.updateProfile({
-        //       displayName: '',
-        //       photoURL: this.inputImageUser.nativeElement.value
-        //     }).then(() => {
-        //       console.log("User Update");
-        //       this.nav.navigateForward('tabs/clientes');
-        //   }).catch((error) => console.log(error,error));
-        //   }
-        // });
       });
     }
   }

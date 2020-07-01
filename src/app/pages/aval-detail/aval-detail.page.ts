@@ -34,6 +34,7 @@ export class AvalDetailPage implements OnInit {
     noidentificacion: '',
     urlImagenIdentificacion: '',
     clienteId: '',
+    uid: ''
   }
 
   constructor(

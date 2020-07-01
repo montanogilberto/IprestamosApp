@@ -21,6 +21,7 @@ formaPago: FormaPagoI = {
   cvv: '',
   banco: '',
   clienteId: '',
+  uid: '',
 }
 
   constructor(
