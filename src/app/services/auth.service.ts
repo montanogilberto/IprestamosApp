@@ -1,15 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth'
 import { Router } from '@angular/router';
-import { auth } from 'firebase';
 import { map } from 'rxjs/operators';
-import { promise } from 'protractor';
 import { AngularFirestore } from "@angular/fire/firestore";
-import { ClienteService } from "../services/cliente.service";
-import { DomicilioService } from "../services/domicilio.service";
-import { FormaPagosService } from "../services/forma-pagos.service";
-import { AvalesService } from "../services/avales.service";
-import { PrestamoService } from "../services/prestamo.service";
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +16,7 @@ export class AuthService {
       private angularFireAuth: AngularFireAuth, 
       private router: Router,
       ) { }
+
 
   login(email: string, password: string){
 

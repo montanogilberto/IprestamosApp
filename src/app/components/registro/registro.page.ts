@@ -1,12 +1,14 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { AuthService } from "../../services/auth.service";
 import { Router } from "@angular/router";
-import { LoadingController, ActionSheetController } from '@ionic/angular';
+import { LoadingController, ActionSheetController, ModalController} from '@ionic/angular';
 import { Capacitor, Plugins, CameraResultType, FilesystemDirectory } from '@capacitor/core';
 import { AngularFireStorage } from "@angular/fire/storage";
 import { Observable } from 'rxjs/internal/observable';
 import { finalize } from 'rxjs/operators';
 import { RegistroService } from "../../services/registro.service";
+import { CodeVerifyComponent } from "../code-verify/code-verify.component";
+import { Firebase } from '@ionic-native/firebase/ngx';
 
 const { Camera, Filesystem } = Plugins;
 
@@ -20,6 +22,8 @@ export class RegistroPage implements OnInit {
   email: string;
   name: string;
   password: string;
+  phoneNumber: string;
+  verificationId: string;
   urlImagen: string = "../../../assets/icon/perfil_default.jpg";
   @ViewChild('imageUser', { static: true }) inputImageUser: ElementRef;
   uploadPercent: Observable<number>;
@@ -32,11 +36,36 @@ export class RegistroPage implements OnInit {
     private loadingController: LoadingController,
     public actionSheetController: ActionSheetController,
     private angularFireStorage: AngularFireStorage,
-    private registroService: RegistroService
+    private registroService: RegistroService,
+    private modal: ModalController,
+    private firebase: Firebase
   ) { }
 
   ngOnInit() {
 
+  }
+
+  send() {
+    const tell = '+52' + this.phoneNumber;
+    this.firebase.verifyPhoneNumber(tell,60).then((verificationId) => {
+
+      console.log(verificationId);
+  
+      this.verificationId = verificationId;
+  
+    }).catch((error) => {
+  
+    });
+
+  }
+
+  openModal() {
+    this.modal.create({
+      component: CodeVerifyComponent,
+      componentProps: {
+        name: this.name
+      }
+    }).then((modal) => modal.present())
   }
 
   takePhoto() {
